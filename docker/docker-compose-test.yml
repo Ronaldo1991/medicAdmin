@@ -1,0 +1,18 @@
+version: "1.0"
+
+volumes:
+  staticfiles:
+  mediafiles:
+
+services:
+   web:
+      container_name: medic_admin_test
+      image: medic_admin_test
+      build:
+        context: ../
+        dockerfile: docker/dockerfile/medicadmin.dockerfile.yml
+      command: ./docker/scripts/env_test.sh
+      # expose:
+      #   - 8000
+      # ports:
+      #   - 8000:8000
