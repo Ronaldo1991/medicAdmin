@@ -1,0 +1,9 @@
+FROM python:3.11
+LABEL maintainer "Ronaldo Bernardes ronaldofra1991@gmail.com"
+ENV PYTHONUNBUFFERED 1
+COPY . /var/medicadmin
+WORKDIR /var/medicadmin
+RUN pip install -r requirements/requirements-dev.txt
+RUN rm -rf /var/medicadmin/requirements
+# Set executable permissions on the entrypoint script
+RUN chmod +x ./scripts/env_dev.sh

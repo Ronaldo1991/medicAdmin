@@ -2,5 +2,4 @@ FROM python:3.11
 LABEL maintainer "Ronaldo Bernardes ronaldofra1991@gmail.com"
 ENV PYTHONUNBUFFERED 1
 COPY . /var/medicadmin
-WORKDIR /var/requirements
-RUN pip install -r requirements-test.txt
+WORKDIR /var/medicadmin

@@ -1,0 +1,20 @@
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore local development environment files
+docker/
+
+# Ignore dependencies installed by pip
+venv/
+env/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore testing artifacts
+pytest_cache/
+
+# Ignoring README
+README.md

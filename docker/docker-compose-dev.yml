@@ -1,0 +1,46 @@
+version: "1.0"
+
+volumes:
+  staticfiles:
+  mediafiles:
+
+services:
+  medicadmin:
+    container_name: medic_admin_dev
+    image: medic_admin_dev
+    build:
+      context: ../
+      dockerfile: docker/dockerfile/medicadmin-dev.dockerfile.yml
+    # Command used for container development
+    command: tail -f /dev/null
+    # Command used for container production
+    # command: ./scripts/env_dev.sh      
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    # env_file:
+    #   - ./.env.dev
+    networks:
+      - nwmedicadmin
+  
+  db:
+    container_name: postgis_medic_dev
+    image: postgis/postgis:15-3.3-alpine
+    restart: on-failure
+    #healthcheck:
+    #  test: "exit 0"
+    ports:
+      - 5454:5432
+    # TODO colocar os arquivos sensíveis dentro do .env
+    environment: 
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_DB=medic_admin_dev
+      - POSTGRES_USER=medic_admin_dev
+      - POSTGRES_PASS=D3v_R0@!_F
+
+networks:
+  nwmedicadmin:
+    driver: bridge
